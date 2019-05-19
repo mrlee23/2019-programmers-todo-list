@@ -1,0 +1,180 @@
+@font-face {
+  font-family: "Chinese Quote";
+  src: local("PingFang SC"), local("SimSun");
+  unicode-range: U+2018, U+2019, U+201c, U+201d;
+}
+body {
+  margin: 0;
+  font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.65);
+  background-color: #fff;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  background-color: #ddd;
+  margin: 0px;
+}
+svg {
+  display: flex !important;
+  align-items: center;
+}
+
+.btn {
+  cursor: pointer;
+
+  transition-timing-function: ease;
+  transition-duration: .2s;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  background-color: #EF5350;
+
+  &__title {
+    flex: 1;
+
+    color: white;
+
+    font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
+    font-size: 2.3em;
+    text-align: center;
+  }
+
+  &__add-btn {
+    position: absolute;
+    right: 0px;
+
+    color: white;
+    padding: 15px;
+  }
+}
+
+.todo-element {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  margin: 10px;
+
+  &__container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1;
+
+    background-color: white;
+
+    padding: 10px;
+  }
+
+  &__contents {
+    flex: 1;
+  }
+
+  &__deadline {
+    margin-right: 100px;
+  }
+
+  &__priority, &__control {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-self: stretch;
+
+    //margin: 3px 0px;
+    padding: 3px 10px;
+
+    background-color: #303030;
+
+    color: gray;
+
+    .btn:hover {
+      color: white;
+    }
+  }
+
+}
+
+.todo-form {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  visibility: hidden;
+
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+
+  opacity: 0;
+
+  transition: all 0.3s ease;
+
+  &.is-active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    z-index: -1;
+
+    background-color: rgba(30, 30, 30, 0.5);
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    align-self: center;
+    width: 60%;
+    height: 60%;
+    background-color: rgb(255, 255, 255);
+  }
+
+  &__form {
+    flex: 1;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+  }
+
+  &__accept-btn, &__cancel-btn {
+    border: 1px solid green;
+    //padding: 5px 10px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+
+  &__close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    transform: scale(1.5) rotate(45deg) !important;
+  }
+}
