@@ -7,11 +7,10 @@ services:
       context: ./
       dockerfile: ./frontend/Dockerfile
     environment:
-      - HOST=0.0.0.0
-      - BACKEND_URL=http://todolist.dongsoolee.com/api/
-      - BACKEND_HOST=backend
-      - BACKEND_PORT=3000
-      - BACKEND_ROOT=/
+      HOST: 0.0.0.0
+      BACKEND_HOST: backend
+      BACKEND_PORT: 3000
+      BACKEND_ROOT: /
     restart: always
     ports:
       - "80:3000"
@@ -27,6 +26,8 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DBNAME: ${DB_DB}
     restart: always
+    depends_on:
+      - db
   db:
     container_name: todolist_db
     image: mariadb:10.3
