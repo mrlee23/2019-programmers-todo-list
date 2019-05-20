@@ -83,9 +83,11 @@
         var fromDate = this.$moment(new Date())
         var days = Math.floor(this.$moment.duration(fromDate.diff(targetDate)).asDays())
         if (days > 0) {
-          this.$toast.show("'" + this.title + "' 마감기한이 " + days + "일 지났습니다  ༼◉_◉ ༽ "  , {
-            theme: "outline"
-          })
+          if (!this.todoFlag) {
+            this.$toast.show("'" + this.title + "' 마감기한이 " + days + "일 지났습니다  ༼◉_◉ ༽ ", {
+              theme: "outline"
+            })
+          }
           return 'D+' + days;
         } else if (days < 0) {
           return 'D' + days;
