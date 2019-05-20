@@ -1,6 +1,9 @@
 const BACKEND_URL = `http://${process.env.BACKEND_HOST}:${process.env.BACKEND_PORT}${process.env.BACKEND_ROOT}`;
 const BACKEND_API = process.env.BACKEND_URL || 'http://localhost/api/';
 
+console.log(BACKEND_URL);
+console.log(BACKEND_API);
+
 module.exports = {
   /*
   ** Headers of the page

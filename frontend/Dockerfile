@@ -1,5 +1,7 @@
 FROM node:8
 
+WORKDIR /usr/src/app
+
 COPY ./frontend .
 
 RUN npm install
