@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 services:
   frontend:
@@ -27,7 +27,8 @@ services:
       DB_DBNAME: ${DB_DB}
     restart: always
     depends_on:
-      - db
+      db:
+        condition: service_healthy
   db:
     container_name: todolist_db
     image: mariadb:10.3
@@ -39,3 +40,8 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DB}
+    healthcheck:
+      test: /usr/bin/mysql --user=${DB_USER} --password=${DB_PASSWORD} --execute "SHOW DATABASES;"
+      interval: 3s
+      timeout: 1s
+      retries: 5
