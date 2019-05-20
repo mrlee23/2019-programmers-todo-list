@@ -1,3 +1,6 @@
+const BACKEND_URL = `http://${process.env.BACKEND_HOST}:${process.env.BACKEND_PORT}${process.env.BACKEND_ROOT}`;
+const BACKEND_API = process.env.BACKEND_URL || 'http://localhost/api/';
+
 module.exports = {
   /*
   ** Headers of the page
@@ -18,13 +21,17 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   modules: [
-    ['@nuxtjs/axios', {baseURL: 'http://backend:3000', progress: false}],
+    ['@nuxtjs/axios', {baseURL: BACKEND_API, progress: false}],
     ['@nuxtjs/moment', { locales: ['ko'], defaultLocale: 'ko' }],
-  '@nuxtjs/toast'],
+    '@nuxtjs/proxy',
+    '@nuxtjs/toast'],
   toast: {
     duration: 2000,
     keepOnHover: true,
     position: 'bottom-right'
+  },
+  proxy: {
+    '/api': { target: BACKEND_URL, secure: false, crossorigin: true }
   },
   plugins: ["@/plugins/vue-awesome",
     {src: "@/plugins/vue-datepicker", ssr: false},

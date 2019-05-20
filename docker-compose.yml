@@ -6,10 +6,11 @@ services:
     build:
       context: ./
       dockerfile: ./frontend/Dockerfile
-    networks:
-      - app-network
     environment:
       - HOST=0.0.0.0
+      - BACKEND_HOST=backend
+      - BACKEND_PORT=3000
+      - BACKEND_ROOT=/
     restart: always
     ports:
       - "80:3000"
