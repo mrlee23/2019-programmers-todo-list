@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="todo-element__container">
-      <div class="todo-element__todo-btn btn" @click="handleTodoClick">
+      <div :class="{'todo-element__todo-btn': true, 'btn': true, 'is-completed': todoFlag == true}" @click="handleTodoClick">
         <v-icon v-if="todoFlag == true" name="check-circle"/>
         <v-icon v-else name="circle"/>
       </div>
@@ -36,7 +36,8 @@
 <script>
   export default {
     name: 'TodoElement',
-    components: {},
+    components: {
+    },
     props: {
       id: {
         type: Number,

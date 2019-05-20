@@ -8,15 +8,20 @@
       <div class="todo-form__form">
         <div class="todo-form__input-title">
           <span>할일: </span>
-          <input v-model="inputTitle">
+          <input class="todo-form__input" type="text" v-model="inputTitle">
         </div>
         <div class="todo-form__input-content">
           <span>내용: </span>
-          <textarea v-model="inputContent" />
+          <textarea class="todo-form__textarea" v-model="inputContent" />
         </div>
         <div class="todo-form__input-deadline">
+          <span class="todo-form__input-deadline-text">마감시간 설정 </span>
+          <label class="switch">
+            <input v-model="deadlineEnabled" type="checkbox">
+            <span class="slider round"></span>
+          </label>
           <no-ssr>
-            <VueCtkDateTimePicker label="마감시간" v-model="inputDeadline" format="YYYY-MM-DD" auto-close only-date></VueCtkDateTimePicker>
+            <VueCtkDateTimePicker v-if="deadlineEnabled" label="마감시간" v-model="inputDeadline" format="YYYY-MM-DD" auto-close only-date></VueCtkDateTimePicker>
           </no-ssr>
         </div>
       </div>
@@ -32,10 +37,10 @@
 </template>
 
 <script>
-  import axios from 'axios';
   export default {
     name: 'TodoForm',
-    components: {},
+    components: {
+    },
     props: {
       type: {
         type: String,
@@ -57,7 +62,8 @@
         activateFlag: this.activate,
         inputTitle: this.data.title,
         inputContent: this.data.content,
-        inputDeadline: this.data.deadline
+        inputDeadline: this.data.deadline,
+        deadlineEnabled: true
       }
     },
     watch: {
@@ -88,6 +94,7 @@
         this.inputTitle = ''
         this.inputContent = ''
         this.inputDeadline = new Date()
+        this.deadlineEnabled = true
       },
       closeAction() {
         this.$emit('update:activate', false)
@@ -102,7 +109,7 @@
           title: this.inputTitle,
           content: this.inputContent,
           priority: this.data.priority,
-          deadline: this.inputDeadline
+          deadline: this.deadlineEnabled ? this.inputDeadline : null
         }
 
 

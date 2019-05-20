@@ -1,16 +1,32 @@
 version: '2'
 
 services:
-    db:
-        container_name: template_db
-        image: mariadb:10.3
-        volumes:
-            - ./db/mysql:/var/lib/mysql
-            - ./db/config:/etc/mysql
-        environment:
-            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-            MYSQL_USER: ${DB_USER}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-            MYSQL_DATABASE: ${DB_DB}
-        ports:
-            - "3306:3306"
+  frontend:
+    container_name: todolist_frontend
+    build:
+      context: ./
+      dockerfile: ./frontend/Dockerfile
+    networks:
+      - app-network
+    restart: always
+    ports:
+      - "80:3000"
+  db:
+    container_name: todolist_db
+    image: mariadb:10.3
+    volumes:
+      - ./db/mysql:/var/lib/mysql
+      - ./db/config:/etc/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DB}
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

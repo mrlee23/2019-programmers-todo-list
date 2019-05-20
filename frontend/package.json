@@ -23,8 +23,7 @@
     "vue-awesome": "^3.5.2",
     "vue-cookie": "^1.1.4",
     "vue-ctk-date-time-picker": "^2.1.1",
-    "vue-notifications": "^1.0.0",
-    "vue-switches": "^2.0.1"
+    "vue-notifications": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
