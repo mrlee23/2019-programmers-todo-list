@@ -55,8 +55,12 @@ const BACKEND_API = 'https://todolist.dongsoolee.com/api/';
 $ docker-compose up --build -d
 ```
 
-## 실행 확인 ##
+## 실행 로그 ##
 
 ```sh
 $ docker-compose logs -f
 ```
+
+## 실행 확인 ##
+
+https://todolist.dongsoolee.com
