@@ -11,6 +11,18 @@ services:
     restart: always
     ports:
       - "80:3000"
+  backend:
+    container_name: todolist_backend
+    build:
+      context: ./
+      dockerfile: ./backend/Dockerfile
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DBNAME: ${DB_DB}
+    restart: alwyas
   db:
     container_name: todolist_db
     image: mariadb:10.3
@@ -22,11 +34,3 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DB}
-    ports:
-      - "3306:3306"
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge

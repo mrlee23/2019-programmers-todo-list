@@ -18,7 +18,7 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   modules: [
-    ['@nuxtjs/axios', {baseURL: 'http://app-network:3001', progress: false}],
+    ['@nuxtjs/axios', {baseURL: 'http://backend:3000', progress: false}],
     ['@nuxtjs/moment', { locales: ['ko'], defaultLocale: 'ko' }],
   '@nuxtjs/toast'],
   toast: {
@@ -49,4 +49,3 @@ module.exports = {
     }
   }
 }
-
